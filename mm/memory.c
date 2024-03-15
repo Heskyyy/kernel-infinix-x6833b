@@ -3627,7 +3627,8 @@ vm_fault_t do_swap_page(struct vm_fault *vmf)
 
 		/* ksm_might_need_to_copy() needs a stable VMA, spf can't be used */
 #ifndef CONFIG_KSM
-		trace_android_vh_do_swap_page_spf(&allow_swap_spf);
+		pte_unmap(vmf->pte);
+		return VM_FAULT_RETRY;
 #endif
 		if (!allow_swap_spf) {
 			pte_unmap(vmf->pte);
