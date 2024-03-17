@@ -5177,8 +5177,8 @@ void iwl_mvm_sync_rx_queues_internal(struct iwl_mvm *mvm,
 	}
 
 out:
-	mvm->queue_sync_state = 0;
-	if (notif->sync)
+	if (notif->sync) {
+	  mvm->queue_sync_state = 0;
 		mvm->queue_sync_cookie++;
 }
 
